@@ -7,12 +7,10 @@ const WorkoutSchema = new Schema({
     type: Date,
     unique: true
   },
-  exercises: [
+  exercises: 
     {
-      type: Schema.Types.ObjectId,
-      ref: "Exercises"
+      type: Array,
     }
-  ]
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);

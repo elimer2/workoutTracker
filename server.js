@@ -23,6 +23,26 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "./public/index.html"));
 });
 
+app.get("/exercise", (req, res) => {
+  res.sendFile(path.join(__dirname + "./public/exercise.html"));
+});
+
+app.get("/stats", (req, res) => {
+  res.sendFile(path.join(__dirname + "./public/stats.html"));
+});
+
+app.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    .then((dbWorkout) => {
+      console.log("im in api/workout", dbWorkout);
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      console.log("im in error api/workout", err);
+      res.json(err);
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
