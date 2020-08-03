@@ -6,8 +6,6 @@ mongoose.connect("mongodb://localhost/workout", {
   useFindAndModify: false,
 });
 
-console.log("im connected");
-
 let workoutSeed = [
   {
     day: new Date(new Date().setDate(new Date().getDate() - 10)),
