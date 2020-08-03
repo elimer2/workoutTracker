@@ -1,5 +1,6 @@
 const express = require("express");
 const logger = require("morgan");
+const path = require("path");
 let mongoose = require("mongoose");
 let db = require("./models");
 
@@ -20,15 +21,15 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "./public/index.html"));
+  res.sendFile(path.join(__dirname + "/public/index.html"));
 });
 
 app.get("/exercise", (req, res) => {
-  res.sendFile(path.join(__dirname + "./public/exercise.html"));
+  res.sendFile(path.join(__dirname + "/public/exercise.html"));
 });
 
 app.get("/stats", (req, res) => {
-  res.sendFile(path.join(__dirname + "./public/stats.html"));
+  res.sendFile(path.join(__dirname + "/public/stats.html"));
 });
 
 app.get("/api/workouts", (req, res) => {
@@ -39,6 +40,20 @@ app.get("/api/workouts", (req, res) => {
     })
     .catch((err) => {
       console.log("im in error api/workout", err);
+      res.json(err);
+    });
+});
+
+app.put("/api/workouts/:id", (req, res) => {
+  db.Workout.findOneAndUpdate(
+    { _id: req.params.id },
+    { $push: { exercises: req.body } },
+    { new: false }
+  )
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
       res.json(err);
     });
 });
