@@ -4,7 +4,7 @@ A workout tracker made with MongoDB
 
 ## Link
 
-https://lindyem.github.io/teamRoster/
+https://thawing-castle-40893.herokuapp.com/
 
 ## Description
 
