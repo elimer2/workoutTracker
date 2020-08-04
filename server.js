@@ -4,7 +4,9 @@ const path = require("path");
 let mongoose = require("mongoose");
 let db = require("./models");
 
-mongoose.connect("mongodb://localhost/workout", {
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
+
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,
 });
