@@ -16,4 +16,6 @@ Project consists of fitness tracker where users can create and update their work
 - CSS3
 - MondgoDB
 
-#Screenshot \*![alt text](./img/img1.png "screenshot")
+#Screenshot \*![alt text](./imgScreenshots/1.png "screenshot")
+#Screenshot \*![alt text](./imgScreenshots/2.png "screenshot")
+#Screenshot \*![alt text](./imgScreenshots/3.png "screenshot")
