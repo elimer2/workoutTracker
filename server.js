@@ -35,7 +35,6 @@ app.get("/stats", (req, res) => {
 app.get("/api/workouts", (req, res) => {
   db.Workout.find({})
     .then((dbWorkout) => {
-      console.log("im in api/workout", dbWorkout);
       res.json(dbWorkout);
     })
     .catch((err) => {
@@ -60,6 +59,16 @@ app.put("/api/workouts/:id", (req, res) => {
 
 app.post("/api/workouts", (req, res) => {
   db.Workout.create({ day: new Date().setDate(new Date().getDate()) })
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+app.get("/api/workouts/range", (req, res) => {
+  db.Workout.find( { day: { $gt:  new Date(new Date().setDate(new Date().getDate() - 10)), $lt: new Date().setDate(new Date().getDate()) } } )
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
