@@ -48,8 +48,18 @@ app.put("/api/workouts/:id", (req, res) => {
   db.Workout.findOneAndUpdate(
     { _id: req.params.id },
     { $push: { exercises: req.body } },
-    { new: false }
+    { new: true }
   )
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+app.post("/api/workouts", (req, res) => {
+  db.Workout.create({ day: new Date().setDate(new Date().getDate()) })
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
